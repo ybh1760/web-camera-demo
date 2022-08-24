@@ -1,19 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import { useState } from "react";
+
+import KakaoLoginButton from "@src/components/KakaoLogin";
+
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  const [imgUrl, setImgUrl] = useState<string>();
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.files || event.target.files.length === 0) {
-      return;
-    }
-
-    setImgUrl(URL.createObjectURL(event.target.files[0]));
-  };
   return (
     <div className={styles.container}>
       <Head>
@@ -23,16 +15,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <label htmlFor="camera">사진찍기</label>
-        <input
-          type="file"
-          accept="image/*"
-          capture
-          id="camera"
-          style={{ display: "none" }}
-          onChange={handleImageChange}
-        />
-        {imgUrl && <Image src={imgUrl} />}
+        <KakaoLoginButton />
       </main>
     </div>
   );
